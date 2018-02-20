@@ -1,0 +1,116 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      Add Movie  
+    </div>
+    <div class="panel-body">
+       <form class="form-horizontal"
+       novalidate
+       (ngSubmit)="save()"
+       [formGroup]="movieForm">
+       <fieldset>
+        <div class="form-group"
+        [ngClass]="{'has-error':(movieForm.get('Denumire').touched || movieForm.get('Denumire').dirty)&& !movieForm.get('Denumire').valid}">
+        <label class="col-md-2 control-label"
+        for="DenumireId">Denumire</label>
+  
+  
+          <div class="col-md-8">
+            <input class="form-control"
+              id="DenumireId"
+              type="text"
+              placeholder="Denumire(required)"
+             formControlName="Denumire" />
+              <span class="help-block" *ngIf="(movieForm.get('Denumire').touched || movieForm.get('Denumire').dirty) && movieForm.get('Denumire').errors">
+            <span *ngIf="movieForm.get('Denumire').errors.required">
+              Campul Nume film e obligatori *
+            </span>
+              <span *ngIf="movieForm.get('Denumire').errors.minlength">
+               Campul Nume Film trebuie sa contina minim 3 caractere
+              </span>
+            </span>
+            </div>
+          </div>
+
+          <div class="form-group"
+          [ngClass]="{'has-error':(movieForm.get('Anul_Productiei').touched || movieForm.get('Anul_Productiei').dirty)&& !movieForm.get('Anul_Productiei').valid}">
+          <label class="col-md-2 control-label"
+          for="Anul_ProductieiId">Anul Productiei</label>
+    
+    
+            <div class="col-md-8">
+              <input class="form-control"
+                id="Anul_ProductieiID"
+                type="text"
+                placeholder="Anul Productiei(required)"
+                
+               formControlName="Anul_Productiei" />
+                <span class="help-block" *ngIf="(movieForm.get('Anul_Productiei').touched || movieForm.get('Anul_Productiei').dirty) && movieForm.get('Anul_Productiei').errors">
+              <span *ngIf="movieForm.get('Anul_Productiei').errors.required">
+                Campul  Anul Productiei este  obligatoriu !
+              </span>
+               
+                <span *ngIf="movieForm.get('Anul_Productiei').errors.minlength">
+                  Anul trebuie sa contina 4 caractere ex: 2010
+                </span>
+                <span *ngIf="movieForm.get('Anul_Productiei').errors.max">
+                  Anul maxim de productie e 2018
+                </span>
+                <span *ngIf="movieForm.get('Anul_Productiei').errors.min">
+                  Anul minim de productie e 1900
+                </span>
+                <span *ngIf="movieForm.get('Anul_Productiei').errors.pattern">
+                  Anul Productiei trebuie sa contina doar numere  ex: 2010
+                </span>
+               
+                
+                
+              </span>
+              </div>
+            </div>
+
+            <div class="form-group"
+            [ngClass]="{'has-error':(movieForm.get('Genul').touched || movieForm.get('Genul').dirty)&& !movieForm.get('Genul').valid}">
+            <label class="col-md-2 control-label"
+            for="GenulId">Genul Filmului</label>
+      
+      
+              <div class="col-md-8">
+                <input class="form-control"
+                  id="GenulId"
+                  type="text"
+                  placeholder="Genul(required)"
+                  formControlName="Genul" />
+                  <span class="help-block" *ngIf="(movieForm.get('Denumire').touched || movieForm.get('Denumire').dirty) && movieForm.get('Denumire').errors">
+                <span *ngIf="movieForm.get('Genul').errors.required">
+                  Campul Genul filmului este obligatoriu *
+                </span>
+                  <span *ngIf="movieForm.get('Genul').errors.minlength">
+                    Genul filmului trebuie sa contina cel putin 3 caractere
+                  </span>
+                </span>
+                </div>
+              </div>
+
+        
+
+          <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+              <span>
+                <button class="btn btn-primary"
+                type="submit"
+                [disabled]="!movieForm.valid">
+                Save
+                </button>
+              </span>
+            </div>
+          </div> 
+          
+          
+          </fieldset>
+          </form>
+          </div>
+  </div>
+  <br> Dirty : {{movieForm.dirty}}
+  <br> Touched : {{movieForm.touched}}
+  <br> Valid:{{movieForm.valid}}
+  <br>Value : {{movieForm.value |json}}

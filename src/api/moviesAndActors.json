@@ -1,0 +1,25 @@
+
+{
+    "Movies": 
+    [ 
+		{"Id_movie":1 ,"Denumire":"American Assassin", "Genul":"Action / Thriller", "Anul_Prductiei":"2017","Id_Actors":[2,1]}, 
+		{"Id_movie":2,"Denumire":"The Hitman's Bodyguard", "Genul":"Action / Comedy", "Anul_Prductiei":"2017","Id_Actors":[3,1]},
+        {"Id_movie":3,"Denumire":"Overdrive ", "Genul":"Action / Thriller", "Anul_Prductiei":"2017","Id_Actors":[3,2,1]},
+        {"Id_movie":4,"Denumire":"Just Getting Started", "Genul":"Action & Adventure, Comedy", "Anul_Prductiei":"2017","Id_Actors":[4]},
+        {"Id_movie":5,"Denumire":"November Criminals", "Genul":"Drama", "Anul_Prductiei":"2017","Id_Actors":[2]},
+        {"Id_movie":5,"Denumire":"Quest", "Genul":"Documentary", "Anul_Prductiei":"2017","Id_Actors":[4]}
+        
+    ],
+    "Actors":
+    [
+        {"Id_Actor":1,"Nume":"Vin Diesel","Anul_Nasterii":"18 iulie 1967",
+            "imagePath":"https://www.famousbirthdays.com/faces/diesel-vin-image.jpg"},
+        {"Id_Actor":2,"Nume":"Jason Statham","Anul_Nasterii":"12 septembrie 1967",
+            "imagePath":"https://www.famousbirthdays.com/headshots/jason-statham-4.jpg"},
+        {"Id_Actor":3,"Nume":"Johnny Depp","Anul_Nasterii":"9 iunie 1963",
+            "imagePath":"https://pmcmovieline.files.wordpress.com/2012/07/120710_depp.jpg?w=300&h=400"},
+        {"Id_Actor":4,"Nume":"Morgan Freeman","Anul_Nasterii":"1 iunie 1937",
+            "imagePath":"http://www.wearemoviegeeks.com/wp-content/uploads/Morgan-Freeman.jpg"}
+        
+    ]
+}

@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="row" >
+   
+<div class="relative">
+
+
+<table *ngIf="movies != null && movies.length > 0"  id="customers">
+  <tr>
+    
+    <th>Denumire</th> 
+    <th>Anul productiei</th>
+    <th>Genul</th>
+    <th>Nume Actor</th>
+    <th>Delete & Edit</th>
+  </tr>
+  <tr *ngFor="let movie of movies"  >
+    
+    <td>{{movie.Denumire}}</td> 
+    <td>{{movie.Anul_Prductiei}}</td>
+    <td>{{movie.Genul}}</td>
+   
+   <td>
+     <ul>
+       <li *ngFor="let actor of movie.Actori" (click)="setSelectedActor(actor, movies)"> {{actor.Nume}}</li>
+      </ul>
+    </td>
+    <td>
+        <a class="btn text-danger" (click)="onDelete(movie.Id_movie)" >
+            <i class="fa fa-remove"></i>
+        </a>
+        <a  class="btn" (click)="setMovieToEdit(movie)"  >
+          
+            <i class="fa fa-edit"></i>
+        </a>
+        </td>
+  </tr>
+</table>
+</div>
+
+
+    <div class="absolute" *ngIf="selectedActor != null">
+      
+   <img src="{{selectedActor.img}}" style="max-height:150px">
+  <li>Actorul selectat este : {{selectedActor.Nume}} </li>
+  <li>Nascut la data: {{selectedActor.Data_Nasterii}}  </li>
+  
+     <div class="menu" >
+  
+    <ul>
+     <h4> Lista de Filme: </h4>
+           <li *ngFor="let selectedActorsMovie of selectedActorsMovies">
+       {{selectedActorsMovie.Denumire}}
+      </li>
+    </ul>
+      </div>
+       </div>
+</div>
+
+<app-add-movie *ngIf="movieToEdit != null" [addingMovie]="false" [movie]="movieToEdit"
+(movieEditat)="movieEditatEvent($event)"
+></app-add-movie>
+

@@ -1,0 +1,37 @@
+<p>
+  actor works!
+</p>
+<hr>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-xs-6">
+<table   class="table table-condensed" id="customers" >
+  <tr>
+    <th>Actor Id</th>
+    <th>Nume Actor</th> 
+    <th>Anul-Nasterii</th>
+    <th>Delete & Edit</th>
+  </tr>
+  <tr *ngFor="let actor of actors">
+    <td>{{actor.Id_Actor}} </td>
+    <td>{{actor.Nume_Actor}}</td> 
+    <td>{{actor.Data_Nasterii}}</td>
+    <td>
+      <a class="btn text-danger" (click)="onDeleteActor(actor.Id_movie)" >
+          <i class="fa fa-remove"></i>
+      </a>
+      <a  class="btn" (click)="setActorToEdit(actor)"  >
+        
+          <i class="fa fa-edit"></i>
+      </a>
+      </td>
+    
+  </tr>
+
+</table>
+</div>
+</div>
+</div>
+<app-add-actor *ngIf="actorToEdit != null" [addingActor]="false" [actor]="actorToEdit"
+
+></app-add-actor>
