@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="angularModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Id_Actor" />
+          </Key>
+          <Property Name="Id_Actor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume Actor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data Nasterii" Type="varchar" MaxLength="50" />
+          <Property Name="img" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'angular.dbo.actorXmovie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="actorXmovie">
+          <Key>
+            <PropertyRef Name="Id_actor" />
+            <PropertyRef Name="Id_movie" />
+          </Key>
+          <Property Name="Id_actor" Type="int" Nullable="false" />
+          <Property Name="Id_movie" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Id_Movies" />
+          </Key>
+          <Property Name="Id_Movies" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Denumire" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genul" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Anul_Prductiei" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_actor">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="actorXmovie" Type="Self.actorXmovie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="Id_Actor" />
+            </Principal>
+            <Dependent Role="actorXmovie">
+              <PropertyRef Name="Id_actor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="actorXmovie" Type="Self.actorXmovie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Id_Movies" />
+            </Principal>
+            <Dependent Role="actorXmovie">
+              <PropertyRef Name="Id_movie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="angularModelStoreContainer">
+          <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="actorXmovie" EntityType="Self.actorXmovie" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [actorXmovie].[Id_actor] AS [Id_actor], 
+    [actorXmovie].[Id_movie] AS [Id_movie]
+    FROM [dbo].[actorXmovie] AS [actorXmovie]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_actor" Association="Self.FK_actor">
+            <End Role="Actor" EntitySet="Actor" />
+            <End Role="actorXmovie" EntitySet="actorXmovie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_movie" Association="Self.FK_movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="actorXmovie" EntitySet="actorXmovie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="angularModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Id_Actor" />
+          </Key>
+          <Property Name="Id_Actor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_Nasterii" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="img" Type="String" MaxLength="70" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Movies" Relationship="Self.actorXmovie" FromRole="Actor" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Id_Movies" />
+          </Key>
+          <Property Name="Id_Movies" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Genul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Anul_Prductiei" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Actors" Relationship="Self.actorXmovie" FromRole="Movie" ToRole="Actor" />
+        </EntityType>
+        <Association Name="actorXmovie">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="angularEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actors" EntityType="Self.Actor" />
+          <EntitySet Name="Movies" EntityType="Self.Movie" />
+          <AssociationSet Name="actorXmovie" Association="Self.actorXmovie">
+            <End Role="Actor" EntitySet="Actors" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="angularModelStoreContainer" CdmEntityContainer="angularEntities1">
+          <EntitySetMapping Name="Actors">
+            <EntityTypeMapping TypeName="angularModel.Actor">
+              <MappingFragment StoreEntitySet="Actor">
+                <ScalarProperty Name="Data_Nasterii" ColumnName="Data Nasterii" />
+                <ScalarProperty Name="Id_Actor" ColumnName="Id_Actor" />
+                <ScalarProperty Name="Nume_Actor" ColumnName="Nume Actor" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="angularModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="Id_Movies" ColumnName="Id_Movies" />
+                <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+                <ScalarProperty Name="Genul" ColumnName="Genul" />
+                <ScalarProperty Name="Anul_Prductiei" ColumnName="Anul_Prductiei" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="actorXmovie" TypeName="angularModel.actorXmovie" StoreEntitySet="actorXmovie">
+            <EndProperty Name="Actor">
+              <ScalarProperty Name="Id_Actor" ColumnName="Id_actor" />
+            </EndProperty>
+            <EndProperty Name="Movie">
+              <ScalarProperty Name="Id_Movies" ColumnName="Id_movie" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -5,15 +5,25 @@
   </h1>
  </div>
 
+ <div class="container">
+   <div class="row">
+      <div class = "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <ul class="nav nav-tabs">
+            <li role ="presentation" ><a class="nav-item nav-link active" href="/movie"> Filme </a> </li>
+            <li role ="presentation" ><a class="nav-item nav-link" href="/actor"> Actori </a> </li>
+            <li role ="presentation" ><a class="nav-item nav-link" href="/add-movie"> Adaugare Film </a> </li>
+            <li role ="presentation" ><a  class="nav-item nav-link" href="/add-actor"> Adaugare Actor </a> </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+    
+    <div class="row">
+        <div class = "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <router-outlet></router-outlet>
+        </div>
+      </div>
 <hr>
-<app-movie></app-movie>
-<!-- <app-actor></app-actor> -->
-<hr>
-<router-outlet></router-outlet>
-<div class="button-row">
- 
-  <button mat-raised-button color="primary" routerLink="add-actor" >Add Actor</button>
-  <button mat-raised-button color="primary"routerLink="add-movie"  >Add Movie</button>  
-  
-</div>
-<app-actor></app-actor>
+

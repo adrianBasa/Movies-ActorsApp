@@ -12,7 +12,7 @@ const httpOptions = {
 
 @Injectable()
 export class ActorService {
-    private httpactor = 'http://localhost:4005/api/actorsdata';
+    private httpactor = 'https://angularbeckend.azurewebsites.net/api/actorsData';
     constructor(private http:Http,private httpclient:HttpClient){}
   
     getActors()
@@ -43,7 +43,7 @@ export class ActorService {
     
     deleteActor(id: number){
      
-     this.httpclient.delete('http://localhost:4005/api/actorsdata/' + id);
+     this.httpclient.delete('https://angularbeckend.azurewebsites.net/api/actorsData' + id);
      
    }
 

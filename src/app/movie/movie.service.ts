@@ -17,7 +17,7 @@ const httpOptions = {
 export class MovieService {
   
 
-    private httpUrl = 'http://localhost:4005/api/moviedata';
+    private httpUrl = 'https://angularbeckend.azurewebsites.net/api/moviedata';
     
       
     
